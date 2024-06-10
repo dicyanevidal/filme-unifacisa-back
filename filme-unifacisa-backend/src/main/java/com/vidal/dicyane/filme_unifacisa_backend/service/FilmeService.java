@@ -3,7 +3,6 @@ package com.vidal.dicyane.filme_unifacisa_backend.service;
 import com.vidal.dicyane.filme_unifacisa_backend.domain.Filme;
 import com.vidal.dicyane.filme_unifacisa_backend.repository.FilmeRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
