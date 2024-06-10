@@ -1,10 +1,13 @@
-FROM openjdk:17-jdk-slim
+
+FROM yannoff/maven:3-openjdk-17 AS builder
 
 WORKDIR /app
+COPY pom.xml /app
+RUN mvn dependency:resolve
+COPY . /app
+RUN mvn package
 
-# Copiar o JAR e renomear para app.jar
-COPY target/filme-unifacisa-backend-0.0.1-SNAPSHOT.jar app.jar
+FROM openjdk:17-slim AS runner
 
-EXPOSE 8081
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+COPY --from=builder /app/target/filme-unifacisa-backend-0.0.1-SNAPSHOT.jar .
+CMD java -jar filme-unifacisa-backend-0.0.1-SNAPSHOT.jar
